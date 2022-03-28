@@ -1,4 +1,15 @@
-.img1{
-    max-width: 100%;
-    height: auto;
+.img1 {
+  max-width: 100%;
+  height: auto;
+}
+
+.reg_col {
+  height: 400px;
+  position: relative;
+}
+.div_input {
+  position: absolute;
+  top: 50%;
+
+  transform: translateY(-50%);
 }
