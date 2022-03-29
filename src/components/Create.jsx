@@ -1,28 +1,26 @@
-import React from "react";
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 function Create() {
   const [userPost, setPost] = useState("");
-  const [currentImage, setImage] = useState("");
-  const [imagePreview,setImagePreview]= useState('')
+  const [selectedImage, setSelectedImage] = useState();
   const [value, setValue] = useState("");
   const [slug, setSlug] = useState("");
+  const [desc, setDesc] = useState("");
 
-  const handleSlug=(e)=>{
-    setSlug(e.target.value)
-
-  }
-  const FileHandler = (e) => {
-    setImage(e.target.files[0]);
-
-    const reader = new FileReader();
-    reader.onloadend=()=>{
-      setImagePreview(reader.result)
+  const handleDescription = (e) => {
+    setDesc(e.target.value);
+   
+  };
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
     }
+  };
 
-    reader.readAsDataURL(e.target.files[0])
+  const handleSlug = (e) => {
+    setSlug(e.target.value);
   };
 
   const inputHandler = (e) => {
@@ -35,9 +33,8 @@ function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const Post = { userPost, currentImage, value };
+    const Post = { userPost, selectedImage, value,desc };
     console.log(Post);
-    
   };
 
   return (
@@ -64,8 +61,9 @@ function Create() {
                   className="list-group-item bg-success text-light mt-3"
                   type="file"
                   name="image"
-                  onChange={FileHandler}
+                  onChange={imageChange}
                 ></input>
+
                 <label id="body" className="list-group-item">
                   Post Body
                 </label>
@@ -99,8 +97,31 @@ function Create() {
                 onChange={handleSlug}
               ></input>
             </div>
+            <div className="list-group list-group-flush">
+              <div className="imagePreview mt-2 mb-2">
+                {selectedImage && (
+                  <div>
+                    <img
+                      src={URL.createObjectURL(selectedImage)}
+                      alt="Thumb"
+                      className="img-fluid rounded float-left  float-right mx-auto"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
             <div className="list-group list-group-flush ">
-            <div className="imagePreview ">{imagePreview}</div>
+              <label className="list-group-item">Meta Description</label>
+              <textarea
+                cols="30"
+                rows="10"
+                placeholder=" meta description ..."
+                maxLength="150"
+                onChange={handleDescription}
+                className="px-2 mt-3"
+              ></textarea>
+              <b className=" mt-3 text-success">   {desc?(150-desc.length):150}</b>
+            
             </div>
           </div>
         </div>
