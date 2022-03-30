@@ -35,6 +35,7 @@ function Create() {
 
     const Post = { userPost, selectedImage, value,desc };
     console.log(Post);
+    
   };
 
   return (
@@ -118,9 +119,9 @@ function Create() {
                 placeholder=" meta description ..."
                 maxLength="150"
                 onChange={handleDescription}
-                className="px-2 mt-3"
+                className="px-2 mt-3 rounded"
               ></textarea>
-              <b className=" mt-3 text-success">   {desc?(150-desc.length):150}</b>
+              <h3 className=" mt-3 text-success">   {desc?(150-desc.length):150}</h3>
             
             </div>
           </div>
