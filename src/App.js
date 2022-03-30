@@ -1,22 +1,23 @@
 import Home from "./components/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter,  Route } from "react-router-dom";
 
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Create from "./components/Create";
+import { Switch } from "react-router-dom";
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Routes >
-        <Route path="/" exact element={<Home></Home>}></Route>
-        <Route path="/create" exact element={<Create></Create>}></Route>
-        <Route path="/register" exact element={<Register></Register>}></Route>
-        <Route path="/login" exact element={<Login></Login>}></Route>
-      </Routes>
+      <Switch >
+        <Route path="/" exact component={Home}></Route>
+        <Route path="/create" exact component={Create}></Route>
+        <Route path="/register" exact component={Register}></Route>
+        <Route path="/login" exact component={Login}></Route>
+      </Switch>
     </BrowserRouter>
   );
 }

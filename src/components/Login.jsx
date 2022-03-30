@@ -2,29 +2,42 @@ import React from "react";
 import man from "../Images/register.jpg";
 import axios from "axios";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+
+
+
 
 function Login() {
   const [email, setMail] = useState("");
   const [password, setPassword] = useState("");
   const URL = "http://localhost:8083/login";
 
+  var history =  useHistory();
+
   const checkMail = (e) => {
-   
-    setMail(e.target.value)
+    setMail(e.target.value);
   };
 
-  const checkPassword=(e)=>{
-    
-    setPassword(e.target.value)
-}
+  const checkPassword = (e) => {
+    setPassword(e.target.value);
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     const Login = { email, password };
-    axios.post(URL, Login);
-
-    console.log(Login);
+    axios
+      .post(URL, Login)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === "You have successfully Login") {
+          history.push('/')
+        } else {
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (

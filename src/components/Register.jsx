@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import man from "../Images/register.jpg";
 import "../Style/register.css";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const URL = "http://localhost:8083/register";
 
@@ -9,6 +10,7 @@ function Register() {
   const [email, setMail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  var history =  useHistory();
 
   const RegisterName = (e) => {
     setName(e.target.value);
@@ -26,7 +28,16 @@ function Register() {
     e.preventDefault();
 
     const Register = { email, name, password };
-    axios.post(URL, Register);
+    axios.post(URL, Register) .then((res) => {
+      console.log(res.data);
+      if (res.data === "Successfully Register") {
+        history.push('/login')
+      } else {
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
    
   };
@@ -60,7 +71,7 @@ function Register() {
               ></input>
 
               <input
-                type="text"
+                type="password"
                 required
                 name="password"
                 placeholder="Create Password"
