@@ -31,7 +31,7 @@ function Login() {
       .then((res) => {
         console.log(res.data);
         if (res.data === "You have successfully Login") {
-          history.push('/')
+          history.push('/profile')
         } else {
         }
       })

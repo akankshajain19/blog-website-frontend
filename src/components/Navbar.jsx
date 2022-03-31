@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IoIosClipboard } from "react-icons/io";
+import { BsBootstrapFill } from "react-icons/bs";
 
 function Navbar() {
   return (
@@ -8,7 +8,7 @@ function Navbar() {
       <ul className="nav justify-content-center">
         <li className="nav-item nav-link h3">
           <Link to={"/"} className="text-success">
-            <IoIosClipboard />
+            <BsBootstrapFill />
           </Link>
         </li>
 
