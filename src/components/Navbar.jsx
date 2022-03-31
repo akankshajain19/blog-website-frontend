@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 //import { IoIosClipboard } from "react-icons/io";
 import { GiNotebook } from "react-icons/gi";
 
-function Navbar() {
+import { BsBootstrapFill } from "react-icons/bs";
+
+
+export default function Navbar() {
 
   const style = { color: "white", fontSize: "1em" }
 
@@ -12,8 +16,12 @@ function Navbar() {
       <ul className="nav justify-content-center">
         <li className="nav-item nav-link h3">
           <Link to={"/"} className="text-success">
+
         
             <GiNotebook style={style} />
+
+            <BsBootstrapFill />
+
           </Link>
         </li>
 
@@ -37,4 +45,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+
