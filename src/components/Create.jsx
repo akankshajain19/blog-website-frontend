@@ -2,6 +2,8 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
+import Navbar2 from "./NavBar2";
+import { toast } from "react-toastify";
 
 function Create() {
   const [userPost, setPost] = useState("");
@@ -50,6 +52,12 @@ function Create() {
       })
       .then((res) => {
         console.log(res);
+        if(res.data){
+          toast.success("New post created", {
+            position: "top-center",
+          });
+        }
+       
       })
       .catch(function (error) {
         console.log(error);
@@ -57,6 +65,8 @@ function Create() {
   };
 
   return (
+    <>
+    <Navbar2/>
     <div className="container">
       <div className="row mt-2 ">
         <div className=" mt-3 col-12 col-lg-6">
@@ -148,6 +158,7 @@ function Create() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

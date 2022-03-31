@@ -3,10 +3,12 @@ import man from "../Images/register.jpg";
 import "../Style/register.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Navbar from "./Navbar";
+import { toast } from "react-toastify";
 
 const URI = "http://localhost:8083/register";
 
-export default function Register() {
+function Register() {
   const [email, setMail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -28,13 +30,12 @@ export default function Register() {
     e.preventDefault();
 
     const Register = { email, name, password };
-
     axios.post(URI, Register) .then((res) => {
-
-    axios.post(URL, Register).then((res) => {
-
       console.log(res.data);
       if (res.data === "Successfully Register") {
+        toast.success(res.data, {
+          position: "top-center",
+        });
         history.push('/login')
       } else {
       }
@@ -43,14 +44,12 @@ export default function Register() {
       console.log(error);
     });
 
-  function Verify(){
-    var a = document.getElementById("pw1").value;
-    var b = document.getElementById("pw2").value;
-    if(a!==b){
-      alert("Password did not match");
-    }
-  }
+   
+  };
+
   return (
+    <>
+    <Navbar />
     <div className="container mt-3 ">
       <div className="row">
         <div className="col-12 col-lg-6">
@@ -85,30 +84,20 @@ export default function Register() {
                 placeholder="Create Password"
                 className="w-100 p-2 mt-3"
                 onChange={RegisterPassword}
-                id="pw1"
               ></input>
 
-              <input
-                type="password"
-                required
-                name="password1"
-                placeholder="Confirm Password"
-                className="w-100 p-2 mt-3"
-                id="pw2"
-              ></input>
-             
               <input
                 type="submit"
                 value="Register"
                 className="w-65 p-2 mt-3 btn-primary btn "
-                onClick={Verify}
               />
             </form>
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }
 
-
+export default Register;

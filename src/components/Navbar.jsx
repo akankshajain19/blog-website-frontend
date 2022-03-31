@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-//import { IoIosClipboard } from "react-icons/io";
+
 import { GiNotebook } from "react-icons/gi";
 
-import { BsBootstrapFill } from "react-icons/bs";
+
 
 
 export default function Navbar() {
@@ -20,16 +20,12 @@ export default function Navbar() {
         
             <GiNotebook style={style} />
 
-            <BsBootstrapFill />
+           
 
           </Link>
         </li>
 
-        <li className="nav-item nav-link h4 ">
-          <Link to={"/create"} className="text-decoration-none text-light">
-            CREATE POST
-          </Link>
-        </li>
+       
         <li className="nav-item nav-link h4 ">
           <Link to={"/register"} className="text-decoration-none text-light">
             REGISTER
