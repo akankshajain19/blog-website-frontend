@@ -4,7 +4,7 @@ import "../Style/register.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const URL = "http://localhost:8083/register";
+const URI = "http://localhost:8083/register";
 
 function Register() {
   const [email, setMail] = useState("");
@@ -28,7 +28,7 @@ function Register() {
     e.preventDefault();
 
     const Register = { email, name, password };
-    axios.post(URL, Register) .then((res) => {
+    axios.post(URI, Register) .then((res) => {
       console.log(res.data);
       if (res.data === "Successfully Register") {
         history.push('/login')

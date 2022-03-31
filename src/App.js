@@ -10,6 +10,7 @@ import { Switch } from "react-router-dom";
 
 function App() {
   return (
+    <div className="container">
     <BrowserRouter>
       <Navbar />
       <Switch >
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" exact component={Login}></Route>
       </Switch>
     </BrowserRouter>
+    </div>
   );
 }
 

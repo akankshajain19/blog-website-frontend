@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import axios from "axios";
 
 function Create() {
   const [userPost, setPost] = useState("");
@@ -8,14 +9,15 @@ function Create() {
   const [value, setValue] = useState("");
   const [slug, setSlug] = useState("");
   const [desc, setDesc] = useState("");
+  const URI = "http://localhost:8083/post";
 
   const handleDescription = (e) => {
     setDesc(e.target.value);
-   
   };
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
+     
     }
   };
 
@@ -33,9 +35,25 @@ function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const Post = { userPost, selectedImage, value,desc };
+    const Post = { userPost, selectedImage, value, desc };
+    let formData = new FormData();
+    formData.set("selectedImage", selectedImage);
+    formData.set('value', value);
+    formData.set('userPost', userPost);
+    formData.set('desc', desc);
     console.log(Post);
-    
+    axios
+      .post(URI, formData, {
+        headers: {
+          "content-type": "multipart/form-data", 
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -114,15 +132,17 @@ function Create() {
             <div className="list-group list-group-flush ">
               <label className="list-group-item">Meta Description</label>
               <textarea
-                cols="30"
-                rows="10"
+                cols="20"
+                rows="5"
                 placeholder=" meta description ..."
                 maxLength="150"
                 onChange={handleDescription}
                 className="px-2 mt-3 rounded"
               ></textarea>
-              <h3 className=" mt-3 text-success">   {desc?(150-desc.length):150}</h3>
-            
+              <h3 className=" mt-3 text-success">
+                {" "}
+                {desc ? 150 - desc.length : 150}
+              </h3>
             </div>
           </div>
         </div>

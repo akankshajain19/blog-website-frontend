@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IoIosClipboard } from "react-icons/io";
+//import { IoIosClipboard } from "react-icons/io";
+import { GiNotebook } from "react-icons/gi";
 
 function Navbar() {
+
+  const style = { color: "white", fontSize: "1em" }
+
   return (
     <div className="navbar navbar-light bg-dark">
       <ul className="nav justify-content-center">
         <li className="nav-item nav-link h3">
           <Link to={"/"} className="text-success">
-            <IoIosClipboard />
+        
+            <GiNotebook style={style} />
           </Link>
         </li>
 

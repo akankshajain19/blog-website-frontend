@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 function Login() {
   const [email, setMail] = useState("");
   const [password, setPassword] = useState("");
-  const URL = "http://localhost:8083/login";
+  const URI = "http://localhost:8083/login";
 
   var history =  useHistory();
 
@@ -27,16 +27,16 @@ function Login() {
 
     const Login = { email, password };
     axios
-      .post(URL, Login)
+      .post(URI, Login)
       .then((res) => {
-        console.log(res.data);
+        
         if (res.data === "You have successfully Login") {
           history.push('/')
         } else {
         }
       })
       .catch(function (error) {
-        console.log(error);
+       
       });
   };
 
