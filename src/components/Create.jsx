@@ -6,6 +6,8 @@ import Navbar2 from "./NavBar2";
 import { toast } from "react-toastify";
 
 function Create() {
+  
+
   const [userPost, setPost] = useState("");
   const [selectedImage, setSelectedImage] = useState();
   const [value, setValue] = useState("");
@@ -43,6 +45,7 @@ function Create() {
     formData.set('value', value);
     formData.set('userPost', userPost);
     formData.set('desc', desc);
+    formData.set('userId', sessionStorage.getItem("id"));
     console.log(Post);
     axios
       .post(URI, formData, {

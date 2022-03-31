@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { GiNotebook } from "react-icons/gi";
 
 export default function Navbar2() {
-  const style = { color: "white", fontSize: "1em" };
+  const style = { color: "white", fontSize: "1em",margin: "0.3em " };
   const logOut = () => {
     sessionStorage.removeItem("id");
 
@@ -14,21 +14,21 @@ export default function Navbar2() {
     });
   };
   return (
-    <div className="navbar navbar-light bg-dark">
+    <div className=" bg-dark">
       <ul className="nav justify-content-center">
-        <li className="nav-item nav-link h3">
+        <li className="nav-item nav-link h3 mt-2">
           <Link to={"/"} className="text-success">
             <GiNotebook style={style} />
           </Link>
         </li>
 
-        <li className="nav-item nav-link h4 ">
+        <li className="nav-item nav-link h4 mt-2">
           <Link to={"/create"} className="text-decoration-none text-light">
             CREATE POST
           </Link>
         </li>
 
-        <li className="nav-item nav-link h4">
+        <li className="nav-item nav-link h4 mt-2">
           <Link
             to={"/"}
             className="text-decoration-none text-light"
@@ -37,9 +37,9 @@ export default function Navbar2() {
             LOGOUT
           </Link>
         </li>
-        <li className="nav-item nav-link h4">
-          <Link to={"/user"} className="text-decoration-none text-light">
-            Show Blog
+        <li className="nav-item nav-link h4 mt-2">
+          <Link to={"/profile"} className="text-decoration-none text-light">
+            SHOW BLOG
           </Link>
         </li>
       </ul>
