@@ -17,7 +17,7 @@ export default function Navbar2() {
     <div className=" bg-dark">
       <ul className="nav justify-content-center">
         <li className="nav-item nav-link h3 mt-2">
-          <Link to={"/"} className="text-success">
+          <Link to={"/allPost"} className="text-success">
             <GiNotebook style={style} />
           </Link>
         </li>

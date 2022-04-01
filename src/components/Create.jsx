@@ -39,13 +39,14 @@ function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const Post = { userPost, selectedImage, value, desc };
+    const Post = { userPost, selectedImage, value, desc ,slug};
     let formData = new FormData();
     formData.set("selectedImage", selectedImage);
     formData.set('value', value);
     formData.set('userPost', userPost);
     formData.set('desc', desc);
     formData.set('userId', sessionStorage.getItem("id"));
+    formData.set('url', slug);
     console.log(Post);
     axios
       .post(URI, formData, {
