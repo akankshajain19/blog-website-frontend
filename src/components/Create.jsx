@@ -11,6 +11,7 @@ function Create() {
   const [value, setValue] = useState("");
   const [slug, setSlug] = useState("");
   const [desc, setDesc] = useState("");
+  const [category,setCategory] = useState(0);
   const URI = "http://localhost:8083/post";
 
   const handleDescription = (e) => {
@@ -32,19 +33,26 @@ function Create() {
     const createSlug = e.target.value.trim().split(" ").join("-");
     setSlug(createSlug);
   };
+  const category_id = (e) =>{
+    setCategory(e.target.value);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const Post = { userPost, selectedImage, value, desc, slug };
+    let u = sessionStorage.getItem("id");
+    const Post = { userPost, selectedImage, value, desc, slug,category,u};
+    console.log(Post);
+    console.log(typeof(u));
     let formData = new FormData();
     formData.set("selectedImage", selectedImage);
     formData.set("value", value);
     formData.set("userPost", userPost);
     formData.set("desc", desc);
-    formData.set("userId", sessionStorage.getItem("id"));
-    formData.set("url", slug);
-    console.log(Post);
+    formData.set("slug", slug);
+    formData.set("u_id", u);
+    formData.set("c_id",category);
+
+    console.log(formData);
     axios
       .post(URI, formData, {
         headers: {
@@ -87,6 +95,7 @@ function Create() {
                   <select
                     class="form-select mt-2"
                     aria-label="Default select example"
+                    onChange={category_id}
                   >
                     <option selected>Select Category</option>
                     <option value="1">Personal</option>
