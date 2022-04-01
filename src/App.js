@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ViewPost from "./components/ViewPost";
 import EditPost from "./components/EditPost";
+import AllPost from "./components/AllPost";
 
 function App() {
   const userId = sessionStorage.getItem("id");
@@ -39,6 +40,7 @@ function App() {
 
           <Route path="/viewPost" exact component={ViewPost}></Route>
           <Route path="/editPost" exact component={EditPost}></Route>
+          <Route path="/allPost" exact component={AllPost}></Route>
         </Switch>
       </BrowserRouter>
     </div>

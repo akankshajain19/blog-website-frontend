@@ -4,8 +4,10 @@ import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import Navbar2 from "./NavBar2";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 function Create() {
+  var history =  useHistory();
   const [userPost, setPost] = useState("");
   const [selectedImage, setSelectedImage] = useState();
   const [value, setValue] = useState("");
@@ -57,6 +59,7 @@ function Create() {
           toast.success("New post created", {
             position: "top-center",
           });
+          history.push('/profile')
         }
       })
       .catch(function (error) {
