@@ -38,6 +38,7 @@ function App() {
           <Route path="/profile" exact component={Profile}></Route>
 
           <Route path="/viewPost" exact component={ViewPost}></Route>
+          <Route path="/editPost" exact component={EditPost}></Route>
         </Switch>
       </BrowserRouter>
     </div>

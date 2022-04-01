@@ -39,9 +39,10 @@ export default function Navbar2() {
         </li>
         <li className="nav-item nav-link h4 mt-2">
           <Link to={"/profile"} className="text-decoration-none text-light">
-            SHOW BLOG
+            MY BLOGS
           </Link>
         </li>
+       
       </ul>
     </div>
   );
