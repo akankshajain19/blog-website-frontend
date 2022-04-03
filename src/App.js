@@ -40,7 +40,7 @@ const postId = sessionStorage.getItem('p_url')
           ></Route>
           <Route path="/profile" exact component={Profile}></Route>
 
-          <Route path="/viewPost/:postUrl" exact component={ViewPost}></Route>
+          <Route path="/viewPost/?" exact component={ViewPost}></Route>
           <Route path="/editPost" exact component={EditPost}></Route>
           <Route path="/allPost"  exact component={AllPost}></Route>
         </Switch>

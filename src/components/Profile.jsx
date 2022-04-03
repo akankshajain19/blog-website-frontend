@@ -1,5 +1,5 @@
 import React from "react";
-import man from "../Images/register.jpg";
+
 import Navbar2 from "./NavBar2";
 import { BsPencilFill, BsFillArrowRightSquareFill } from "react-icons/bs";
 import { ImBin } from "react-icons/im";
@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "../Style/profile.css";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Profile() {
+  // const {postUrl} = useParams(post.post_url[0])
   const style = { fontSize: "1.5em", margin: "0.5em " };
   const title = "Card title";
 
@@ -45,7 +47,7 @@ export default function Profile() {
 
       <div className="container-fluid ">
         <div className="row mt-4 ">
-        {/* {post.posts[0].post_title} */}
+        
           {post.map((element) => {
             return (
               <>
@@ -67,7 +69,8 @@ export default function Profile() {
                   <Link to={"profile/deletePost/postId"} className="text-dark">
                     <ImBin style={style} onClick={deletePost} />
                   </Link>
-                  <Link to={"profile/viewPost/postId"} className="text-dark">
+                  <Link to={`profile/viewPost/${element.post_url}`} className="text-dark">
+                  
                     <BsFillArrowRightSquareFill style={style} />
                   </Link>
                 </div>
