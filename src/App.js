@@ -17,10 +17,9 @@ import { useState } from "react";
 
 function App() {
   const userId = sessionStorage.getItem("id");
-const postId = sessionStorage.getItem('p_url')
+  const postId = sessionStorage.getItem("p_url");
   return (
     <div className="container">
-      
       <BrowserRouter>
         <ToastContainer />
         <Switch>
@@ -29,20 +28,19 @@ const postId = sessionStorage.getItem('p_url')
           <Route path="/register" exact component={Register}></Route>
           <Route path="/login" exact component={Login}></Route>
           <Route
-            path={`/profile/viewPost/${userId}`}
+            path="/profile/viewPost/:post_id"
             exact
             component={ViewPost}
           ></Route>
+
+          <Route path="/profile" exact component={Profile}></Route>
+
           <Route
-            path={`/profile/editPost/${postId}`}
+            path="/profile/editPost/:post_id"
             exact
             component={EditPost}
           ></Route>
-          <Route path="/profile" exact component={Profile}></Route>
-
-          <Route path="/viewPost/?" exact component={ViewPost}></Route>
-          <Route path="/editPost" exact component={EditPost}></Route>
-          <Route path="/allPost"  exact component={AllPost}></Route>
+          <Route path="/allPost" exact component={AllPost}></Route>
         </Switch>
       </BrowserRouter>
     </div>

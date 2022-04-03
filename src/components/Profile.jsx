@@ -10,7 +10,8 @@ import "../Style/profile.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Profile() {
-  // const {postUrl} = useParams(post.post_url[0])
+  let [post, setPost] = useState([]);
+  // let { post_id } = useParams();
   const style = { fontSize: "1.5em", margin: "0.5em " };
   const title = "Card title";
 
@@ -19,22 +20,33 @@ export default function Profile() {
     console.log(t);
   };
 
-  const deletePost = (e) => {
-    console.log("clicked delete");
+  const deletePost = (post_Id) => {
+    console.log(post_Id)
+    const id = sessionStorage.getItem("id");
+    axios
+      .get(`http://localhost:8083/profile/${id}/${post_Id}`)
+      .then((res) => {
+        console.log(res);
+        fetchdata();
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
   };
 
-  let [post, setPost] = useState([]);
-  const id = sessionStorage.getItem("id");
+
+
 
   const fetchdata = () => {
+    const id = sessionStorage.getItem("id");
     axios
       .get(`http://localhost:8083/profile/${id}`)
       .then((res) => {
-        console.log(res.data.posts);
+        // console.log(res.data.posts);
         setPost(res.data.posts);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
@@ -54,20 +66,23 @@ export default function Profile() {
                 <div className="col-12 col-lg-3 bg-light  shadow-lg p-3 mb-5 bg-white rounded ">
                   <img
                     src={`data:image/png;base64,${element.image}`}
-                    className="img-fluid rounded float-left  float-right mx-auto post_img rounded mx-auto d-block"
+                    className="img-fluid rounded float-left  float-right mx-auto post_img rounded mx-auto d-block "
                     alt="photo"
                   />
                   <h5 class="card-title mt-3">{element.post_title}</h5>
                   <p class="card-text">{element.post_desc}</p>
+                 
+               
                   <Link
-                    to={`"profile/editPost/${element.post_url}`}
+                    to={`profile/editPost/${element.post_url}`}
                     className="text-dark"
                   >
-                    {sessionStorage.setItem("p_url", element.post_url)}
+                 
                     <BsPencilFill style={style} onClick={trim} />
                   </Link>
-                  <Link to={"profile/deletePost/postId"} className="text-dark">
-                    <ImBin style={style} onClick={deletePost} />
+                  <Link className="text-dark">
+                    <ImBin style={style} onClick={()=>deletePost(element.post_id)} />
+                   
                   </Link>
                   <Link to={`profile/viewPost/${element.post_url}`} className="text-dark">
                   

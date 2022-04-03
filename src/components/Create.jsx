@@ -6,6 +6,7 @@ import Navbar2 from "./NavBar2";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
+
 function Create() {
   var history =  useHistory();
   const [userPost, setPost] = useState("");
