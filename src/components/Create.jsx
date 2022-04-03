@@ -42,9 +42,9 @@ function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let u = sessionStorage.getItem("id");
-    const Post = { userPost, selectedImage, value, desc, slug,category,u};
+    const Post = { userPost, selectedImage, value, desc, slug,category};
     console.log(Post);
-    console.log(typeof(u));
+   
     let formData = new FormData();
     formData.set("selectedImage", selectedImage);
     formData.set("value", value);

@@ -13,12 +13,14 @@ import "react-toastify/dist/ReactToastify.css";
 import ViewPost from "./components/ViewPost";
 import EditPost from "./components/EditPost";
 import AllPost from "./components/AllPost";
+import { useState } from "react";
 
 function App() {
   const userId = sessionStorage.getItem("id");
-
+const postId = sessionStorage.getItem('p_url')
   return (
     <div className="container">
+      
       <BrowserRouter>
         <ToastContainer />
         <Switch>
@@ -32,15 +34,15 @@ function App() {
             component={ViewPost}
           ></Route>
           <Route
-            path={`/profile/editPost/${userId}`}
+            path={`/profile/editPost/${postId}`}
             exact
             component={EditPost}
           ></Route>
           <Route path="/profile" exact component={Profile}></Route>
 
-          <Route path="/viewPost" exact component={ViewPost}></Route>
+          <Route path="/viewPost/:postUrl" exact component={ViewPost}></Route>
           <Route path="/editPost" exact component={EditPost}></Route>
-          <Route path="/allPost" exact component={AllPost}></Route>
+          <Route path="/allPost"  exact component={AllPost}></Route>
         </Switch>
       </BrowserRouter>
     </div>
