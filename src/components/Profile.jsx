@@ -5,8 +5,8 @@ import { BsPencilFill, BsFillArrowRightSquareFill } from "react-icons/bs";
 import { ImBin } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios"
-import '../Style/profile.css'
+import axios from "axios";
+import "../Style/profile.css";
 
 export default function Profile() {
   const style = { fontSize: "1.5em", margin: "0.5em " };
@@ -22,17 +22,14 @@ export default function Profile() {
   };
 
   let [post, setPost] = useState([]);
-  const URI = "http://localhost:8083/profile";
+  const id = sessionStorage.getItem("id");
 
   const fetchdata = () => {
     axios
-      .get(URI, sessionStorage.getItem("id"))
+      .get(`http://localhost:8083/profile/${id}`)
       .then((res) => {
-        console.log(res);
-        setPost(res.data);
-
-        console.log(res.data[0].post_body);
-        console.log(res.data[0].image);
+        console.log(res.data.posts);
+        setPost(res.data.posts);
       })
       .catch((err) => {
         console.log(err);
@@ -48,6 +45,7 @@ export default function Profile() {
 
       <div className="container-fluid ">
         <div className="row mt-4 ">
+        {/* {post.posts[0].post_title} */}
           {post.map((element) => {
             return (
               <>
@@ -63,7 +61,7 @@ export default function Profile() {
                     to={`"profile/editPost/${element.post_url}`}
                     className="text-dark"
                   >
-                   {sessionStorage.setItem("p_url",element.post_url)}
+                    {sessionStorage.setItem("p_url", element.post_url)}
                     <BsPencilFill style={style} onClick={trim} />
                   </Link>
                   <Link to={"profile/deletePost/postId"} className="text-dark">
