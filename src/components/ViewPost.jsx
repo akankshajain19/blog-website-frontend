@@ -5,8 +5,10 @@ import Navbar2 from "./NavBar2";
 import { FcLike, FcLikePlaceholder, FaComment } from "react-icons/fc";
 import { FaRegCommentAlt, FaUser } from "react-icons/fa";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function ViewPost() {
+  const {postUrl} = useParams()
   const style = { fontSize: "3em" };
   const style2 = { fontSize: "1.5em" };
   const style3 = { fontSize: "1.5em" };
@@ -43,7 +45,7 @@ function ViewPost() {
               <FaRegCommentAlt style={style2} />
             </div>
 
-            <h5 class="card-title mt-3">Card title</h5>
+            <h5 class="card-title mt-3">{postUrl}</h5>
             <p class="card-text">
               Some quick example text to build on the card title and make up the
               bulk of the card's content.

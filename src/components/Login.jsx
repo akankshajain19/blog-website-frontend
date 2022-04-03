@@ -31,8 +31,6 @@ function Login() {
         if (res.data) {
           sessionStorage.setItem("id", res.data.id);
 
-          sessionStorage.setItem("name", res.data.name);
-        
           history.push("/profile");
         } else {
           toast.error("Invalid Credential", {
@@ -41,7 +39,7 @@ function Login() {
         }
       })
       .catch(function (error) {
-        console.log(error)
+        console.log(error);
       });
   };
 
