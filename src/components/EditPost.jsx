@@ -6,17 +6,23 @@ import axios from "axios";
 import Navbar2 from "./NavBar2";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function EditPost() {
- 
+  var history = useHistory();
+  const [img_present, set_img_present] = useState(true);
+  const [category, setCategory] = useState("");
   const { post_url } = useParams();
   const { post_id } = useParams();
   const [userPost, setPost] = useState("");
-  const [selectedImage, setSelectedImage] = useState([]);
+  const [selectedImage, setSelectedImage] = useState();
   const [value, setValue] = useState("");
   const [slug, setSlug] = useState("");
   const [desc, setDesc] = useState("");
-  const URI = "http://localhost:8083/updatePost";
+
+  const category_id = (e) => {
+    setCategory(e.target.value);
+  };
 
   const handleDescription = (e) => {
     setDesc(e.target.value);
@@ -24,6 +30,7 @@ function EditPost() {
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
+      set_img_present(false);
     }
   };
 
@@ -40,43 +47,57 @@ function EditPost() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(
+      `http://localhost:8083/profile/editPost/${post_url}/${post_id}`
+    );
+    const Post = { selectedImage, value, userPost, desc, slug, category };
+    console.log(Post);
 
-    const Post = { userPost, selectedImage, value, desc, slug };
     let formData = new FormData();
     formData.set("selectedImage", selectedImage);
     formData.set("value", value);
     formData.set("userPost", userPost);
     formData.set("desc", desc);
-    formData.set("userId", sessionStorage.getItem("id"));
-    formData.set("url", slug);
-    // console.log(Post);
-    axios
-      .post(URI, formData, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
+    formData.set("slug", slug);
+    formData.set("c_id", category);
+    formData.set("u_id", sessionStorage.getItem("id"));
+
+    formData.set("post_id", sessionStorage.getItem("post_id"));
+    axios({
+      method: 'put',
+      url: `http://localhost:8083/profile/editPost/${post_url}/${post_id}`,
+      data: formData,
+      headers: {'Content-Type': 'multipart/form-data' }
       })
-      .then((res) => {
+      .then(function (res) {
         console.log(res);
-        if (res.data) {
-          toast.success("New post created", {
-            position: "top-center",
-          });
-        }
+               if (res.data) {
+               toast.success("Post updated Sucessfully", {
+                   position: "top-center",
+                 });
+                 history.push("/profile");
+               }
+          
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(function (response) {
+          //handle error
+          console.log(response);
       });
-  };
+
+   };
 
   const getPost = () => {
     axios
       .get(`http://localhost:8083/profile/editPost/${post_url}/${post_id}`)
       .then((res) => {
-       
-        setSlug(res.data.post_url)
-        // setSelectedImage(res.data.image) 
-        console.log(res.data.image);
+        setSlug(res.data.post_url);
+        setSelectedImage(res.data.image);
+        setDesc(res.data.post_desc);
+        setValue(res.data.post_body);
+        setPost(res.data.post_title);
+        setCategory(res.data.category);
+        sessionStorage.setItem("post_id", res.data.post_id);
+        // console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -110,6 +131,8 @@ function EditPost() {
                   <select
                     class="form-select mt-2"
                     aria-label="Default select example"
+                    value={category}
+                    onChange={category_id}
                   >
                     <option selected>Select Category</option>
                     <option value="1">Personal</option>
@@ -133,7 +156,7 @@ function EditPost() {
                     <textarea
                       cols="20"
                       rows="5"
-                      placeholder=" meta description ..."
+                      value={desc}
                       maxLength="150"
                       onChange={handleDescription}
                       className="px-2 mt-3 rounded"
@@ -181,13 +204,19 @@ function EditPost() {
                 <div className="imagePreview mt-2 mb-2">
                   {selectedImage && (
                     <div>
-                      <img
-                        // src={URL.createObjectURL(selectedImage)}
-                        // src={`data:image/png;base64,${selectedImage}`}
-                     
-                        alt="Thumb"
-                        className="img-fluid rounded float-left  float-right mx-auto"
-                      />
+                      {img_present ? (
+                        <img
+                          src={`data:image/png;base64,${selectedImage}`}
+                          alt="Thumb"
+                          className="img-fluid rounded float-left  float-right mx-auto"
+                        />
+                      ) : (
+                        <img
+                          src={URL.createObjectURL(selectedImage)}
+                          alt="Thumb"
+                          className="img-fluid rounded float-left  float-right mx-auto"
+                        />
+                      )}
                     </div>
                   )}
                 </div>

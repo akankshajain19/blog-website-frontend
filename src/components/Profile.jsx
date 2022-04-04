@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "../Style/profile.css";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import EditPost from "./EditPost";
+
 
 export default function Profile() {
   let [post, setPost] = useState([]);
@@ -21,16 +20,6 @@ export default function Profile() {
     // console.log(t);
   };
 
-  const getPost = (post_url, post_Id) => {
-    axios
-      .get(`http://localhost:8083/profile/editPost/${post_url}/${post_Id}`)
-      .then((res) => {
-     
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const deletePost = (post_Id) => {
    
@@ -81,7 +70,7 @@ export default function Profile() {
                   <p class="card-text">{element.post_desc}</p>
                   <Link
                     to={`profile/editPost/${element.post_url}/${element.post_id}`}
-                    // onClick={() => getPost(element.post_url, element.post_id)}
+                  
                     className="text-dark"
                   >
                  
