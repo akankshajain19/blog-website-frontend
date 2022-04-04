@@ -105,6 +105,21 @@ function EditPost() {
                     name="image"
                     onChange={imageChange}
                   ></input>
+                   <div className="list-group list-group-flush ">
+                <label className="list-group-item">Meta Description</label>
+                <textarea
+                  cols="20"
+                  rows="5"
+                  placeholder=" meta description ..."
+                  maxLength="150"
+                  onChange={handleDescription}
+                  className="px-2 mt-3 rounded"
+                ></textarea>
+                <h3 className=" mt-3 text-success">
+                  {" "}
+                  {desc ? 150 - desc.length : 150}
+                </h3>
+              </div>
 
                   <label id="body" className="list-group-item">
                     Post Body
@@ -152,21 +167,7 @@ function EditPost() {
                   )}
                 </div>
               </div>
-              <div className="list-group list-group-flush ">
-                <label className="list-group-item">Meta Description</label>
-                <textarea
-                  cols="20"
-                  rows="5"
-                  placeholder=" meta description ..."
-                  maxLength="150"
-                  onChange={handleDescription}
-                  className="px-2 mt-3 rounded"
-                ></textarea>
-                <h3 className=" mt-3 text-success">
-                  {" "}
-                  {desc ? 150 - desc.length : 150}
-                </h3>
-              </div>
+             
             </div>
           </div>
         </div>

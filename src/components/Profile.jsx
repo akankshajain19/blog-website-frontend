@@ -20,11 +20,25 @@ export default function Profile() {
     console.log(t);
   };
 
-  const deletePost = (post_Id) => {
-    console.log(post_Id)
+  const updatePost=(post_Id)=>{
+    console.log(post_Id);
     const id = sessionStorage.getItem("id");
     axios
-      .get(`http://localhost:8083/profile/${id}/${post_Id}`)
+      .put(`http://localhost:8083/profile/${id}/${post_Id}`)
+      .then((res) => {
+        console.log(res);
+        fetchdata();
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  }
+
+  const deletePost = (post_Id) => {
+    console.log(post_Id);
+    const id = sessionStorage.getItem("id");
+    axios
+      .delete(`http://localhost:8083/profile/${post_Id}`)
       .then((res) => {
         console.log(res);
         fetchdata();
@@ -34,16 +48,13 @@ export default function Profile() {
       });
   };
 
-
-
-
   const fetchdata = () => {
     const id = sessionStorage.getItem("id");
     axios
       .get(`http://localhost:8083/profile/${id}`)
       .then((res) => {
-        // console.log(res.data.posts);
-        setPost(res.data.posts);
+        console.log(res.data);
+        setPost(res.data);
       })
       .catch((err) => {
         // console.log(err);
@@ -59,7 +70,6 @@ export default function Profile() {
 
       <div className="container-fluid ">
         <div className="row mt-4 ">
-        
           {post.map((element) => {
             return (
               <>
@@ -71,21 +81,23 @@ export default function Profile() {
                   />
                   <h5 class="card-title mt-3">{element.post_title}</h5>
                   <p class="card-text">{element.post_desc}</p>
-                 
-               
                   <Link
                     to={`profile/editPost/${element.post_url}`}
+                    onClick={() => updatePost(element.post_id)}
                     className="text-dark"
                   >
-                 
                     <BsPencilFill style={style} onClick={trim} />
                   </Link>
                   <Link className="text-dark">
-                    <ImBin style={style} onClick={()=>deletePost(element.post_id)} />
-                   
+                    <ImBin
+                      style={style}
+                      onClick={() => deletePost(element.post_id)}
+                    />
                   </Link>
-                  <Link to={`profile/viewPost/${element.post_url}`} className="text-dark">
-                  
+                  <Link
+                    to={`profile/viewPost/${element.post_url}`}
+                    className="text-dark"
+                  >
                     <BsFillArrowRightSquareFill style={style} />
                   </Link>
                 </div>

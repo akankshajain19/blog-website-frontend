@@ -129,6 +129,21 @@ function Create() {
                     value={value}
                     onChange={setValue}
                   />
+                    <div className="list-group list-group-flush mt-10">
+                <label className="list-group-item">Meta Description</label>
+                <textarea
+                  cols="20"
+                  rows="5"
+                  placeholder=" meta description ..."
+                  maxLength="150"
+                  onChange={handleDescription}
+                  className="px-2 mt-3 rounded"
+                ></textarea>
+                <h3 className=" mt-3 text-success">
+                  {" "}
+                  {desc ? 150 - desc.length : 150}
+                </h3>
+              </div>
                   <input
                     type="submit"
                     value="Create Post"
@@ -158,27 +173,13 @@ function Create() {
                       <img
                         src={URL.createObjectURL(selectedImage)}
                         alt="Thumb"
-                        className="img-fluid rounded float-left  float-right mx-auto"
+                        className="img-fluid rounded float-left  float-right mx-auto "
                       />
                     </div>
                   )}
                 </div>
               </div>
-              <div className="list-group list-group-flush ">
-                <label className="list-group-item">Meta Description</label>
-                <textarea
-                  cols="20"
-                  rows="5"
-                  placeholder=" meta description ..."
-                  maxLength="150"
-                  onChange={handleDescription}
-                  className="px-2 mt-3 rounded"
-                ></textarea>
-                <h3 className=" mt-3 text-success">
-                  {" "}
-                  {desc ? 150 - desc.length : 150}
-                </h3>
-              </div>
+            
             </div>
           </div>
         </div>
