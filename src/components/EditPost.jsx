@@ -1,14 +1,18 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import Navbar2 from "./NavBar2";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 function EditPost() {
+ 
+  const { post_url } = useParams();
+  const { post_id } = useParams();
   const [userPost, setPost] = useState("");
-  const [selectedImage, setSelectedImage] = useState();
+  const [selectedImage, setSelectedImage] = useState([]);
   const [value, setValue] = useState("");
   const [slug, setSlug] = useState("");
   const [desc, setDesc] = useState("");
@@ -45,7 +49,7 @@ function EditPost() {
     formData.set("desc", desc);
     formData.set("userId", sessionStorage.getItem("id"));
     formData.set("url", slug);
-    console.log(Post);
+    // console.log(Post);
     axios
       .post(URI, formData, {
         headers: {
@@ -64,6 +68,25 @@ function EditPost() {
         console.log(error);
       });
   };
+
+  const getPost = () => {
+    axios
+      .get(`http://localhost:8083/profile/editPost/${post_url}/${post_id}`)
+      .then((res) => {
+       
+        setSlug(res.data.post_url)
+        // setSelectedImage(res.data.image) 
+        console.log(res.data.image);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getPost();
+  }, []);
+
   return (
     <>
       <Navbar2 />
@@ -105,21 +128,21 @@ function EditPost() {
                     name="image"
                     onChange={imageChange}
                   ></input>
-                   <div className="list-group list-group-flush ">
-                <label className="list-group-item">Meta Description</label>
-                <textarea
-                  cols="20"
-                  rows="5"
-                  placeholder=" meta description ..."
-                  maxLength="150"
-                  onChange={handleDescription}
-                  className="px-2 mt-3 rounded"
-                ></textarea>
-                <h3 className=" mt-3 text-success">
-                  {" "}
-                  {desc ? 150 - desc.length : 150}
-                </h3>
-              </div>
+                  <div className="list-group list-group-flush ">
+                    <label className="list-group-item">Meta Description</label>
+                    <textarea
+                      cols="20"
+                      rows="5"
+                      placeholder=" meta description ..."
+                      maxLength="150"
+                      onChange={handleDescription}
+                      className="px-2 mt-3 rounded"
+                    ></textarea>
+                    <h3 className=" mt-3 text-success">
+                      {" "}
+                      {desc ? 150 - desc.length : 150}
+                    </h3>
+                  </div>
 
                   <label id="body" className="list-group-item">
                     Post Body
@@ -159,7 +182,9 @@ function EditPost() {
                   {selectedImage && (
                     <div>
                       <img
-                        src={URL.createObjectURL(selectedImage)}
+                        // src={URL.createObjectURL(selectedImage)}
+                        // src={`data:image/png;base64,${selectedImage}`}
+                     
                         alt="Thumb"
                         className="img-fluid rounded float-left  float-right mx-auto"
                       />
@@ -167,7 +192,6 @@ function EditPost() {
                   )}
                 </div>
               </div>
-             
             </div>
           </div>
         </div>

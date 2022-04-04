@@ -8,39 +8,37 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../Style/profile.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import EditPost from "./EditPost";
 
 export default function Profile() {
   let [post, setPost] = useState([]);
-  // let { post_id } = useParams();
+
   const style = { fontSize: "1.5em", margin: "0.5em " };
   const title = "Card title";
 
   const trim = () => {
     const t = title.trim().substring(0, 9) + ".....";
-    console.log(t);
+    // console.log(t);
   };
 
-  const updatePost=(post_Id)=>{
-    console.log(post_Id);
-    const id = sessionStorage.getItem("id");
+  const getPost = (post_url, post_Id) => {
     axios
-      .put(`http://localhost:8083/profile/${id}/${post_Id}`)
+      .get(`http://localhost:8083/profile/editPost/${post_url}/${post_Id}`)
       .then((res) => {
-        console.log(res);
-        fetchdata();
+     
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
-  }
+  };
 
   const deletePost = (post_Id) => {
-    console.log(post_Id);
+   
     const id = sessionStorage.getItem("id");
     axios
       .delete(`http://localhost:8083/profile/${post_Id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         fetchdata();
       })
       .catch((err) => {
@@ -53,7 +51,7 @@ export default function Profile() {
     axios
       .get(`http://localhost:8083/profile/${id}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setPost(res.data);
       })
       .catch((err) => {
@@ -82,10 +80,11 @@ export default function Profile() {
                   <h5 class="card-title mt-3">{element.post_title}</h5>
                   <p class="card-text">{element.post_desc}</p>
                   <Link
-                    to={`profile/editPost/${element.post_url}`}
-                    onClick={() => updatePost(element.post_id)}
+                    to={`profile/editPost/${element.post_url}/${element.post_id}`}
+                    // onClick={() => getPost(element.post_url, element.post_id)}
                     className="text-dark"
                   >
+                 
                     <BsPencilFill style={style} onClick={trim} />
                   </Link>
                   <Link className="text-dark">

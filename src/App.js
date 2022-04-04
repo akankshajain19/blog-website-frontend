@@ -36,7 +36,7 @@ function App() {
           <Route path="/profile" exact component={Profile}></Route>
 
           <Route
-            path="/profile/editPost/:post_id"
+            path="/profile/editPost/:post_url/:post_id"
             exact
             component={EditPost}
           ></Route>
