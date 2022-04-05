@@ -27,12 +27,27 @@ function AllPost() {
   return (
     <div>
       <Navbar2 />
+      <select
+        class="form-select mt-2 "
+        aria-label="Default select example"
+        // onChange={category_id}
+      >
+        <option selected>Select Category</option>
+        <option value="1">Personal</option>
+        <option value="2">Business</option>
+        <option value="3">Fashion</option>
+        <option value="4">Technology</option>
+        <option value="5">Lifestyle</option>
+        <option value="6">Travel</option>
+        <option value="7">Food</option>
+        <option value="8">News</option>
+      </select>
 
       {post.map((user) => {
         return (
           <Link
             to={`allPost/viewPost/${user.post_url}/${user.post_id}`}
-            className="text-decoration-none text-dark"
+            className="text-decoration-none text-dark "
           >
             <div className="container-fluid ">
               <div className="row mt-4 ">

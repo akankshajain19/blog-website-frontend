@@ -42,6 +42,19 @@ function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
+if(userPost==''&& value== "",desc=="",slug=="",category==""){
+  toast.warn("Fill all the fields", {
+    position: "top-center",
+  });
+
+}  else if(selectedImage == undefined){
+  toast.warn("Select post image", {
+    position: "top-center",
+  });
+}
+
     let u = sessionStorage.getItem("id");
     const Post = { userPost, selectedImage, value, desc, slug,category};
     console.log(Post);

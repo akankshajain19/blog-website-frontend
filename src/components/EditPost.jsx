@@ -54,7 +54,7 @@ function EditPost() {
     console.log(Post);
 
     let formData = new FormData();
-    formData.set("selectedImage", selectedImage);
+    // formData.set("selectedImage", selectedImage);
     formData.set("value", value);
     formData.set("userPost", userPost);
     formData.set("desc", desc);
@@ -64,27 +64,25 @@ function EditPost() {
 
     formData.set("post_id", sessionStorage.getItem("post_id"));
     axios({
-      method: 'put',
+      method: "put",
       url: `http://localhost:8083/profile/editPost/${post_url}/${post_id}`,
       data: formData,
-      headers: {'Content-Type': 'multipart/form-data' }
-      })
+      headers: { "Content-Type": "multipart/form-data" },
+    })
       .then(function (res) {
         console.log(res);
-               if (res.data) {
-               toast.success("Post updated Sucessfully", {
-                   position: "top-center",
-                 });
-                 history.push("/profile");
-               }
-          
+        if (res.data) {
+          toast.success("Post updated Sucessfully", {
+            position: "top-center",
+          });
+          history.push("/profile");
+        }
       })
       .catch(function (response) {
-          //handle error
-          console.log(response);
+        //handle error
+        console.log(response);
       });
-
-   };
+  };
 
   const getPost = () => {
     axios
@@ -144,14 +142,7 @@ function EditPost() {
                     <option value="7">Food</option>
                     <option value="8">News</option>
                   </select>
-                  <input
-                    placeholder="post title ..."
-                    className="list-group-item bg-success text-light mt-3"
-                    type="file"
-                    name="image"
-                    
-                    onChange={imageChange}
-                  ></input>
+             
                   <div className="list-group list-group-flush ">
                     <label className="list-group-item">Meta Description</label>
                     <textarea
@@ -203,25 +194,11 @@ function EditPost() {
               </div>
               <div className="list-group list-group-flush">
                 <div className=" mt-2 mb-2">
-                  {/* {selectedImage && ( */}
-                  {
-                    <div>
-                      {img_present ? (
-                        <img
-                          src={`data:image/png;base64,${selectedImage}`}
-                          alt="Thumb"
-                          className="img-fluid rounded float-left  float-right mx-auto"
-                        />
-                      ) : (
-                        <img
-                          src={URL.createObjectURL(selectedImage)}
-                          alt="Thumb"
-                          className="img-fluid rounded float-left  float-right mx-auto"
-                        />
-                      )}
-                    </div>
-                  }
-                  {/* )} */}
+                  <img
+                    src={`data:image/png;base64,${selectedImage}`}
+                    alt="Thumb"
+                    className="img-fluid rounded float-left  float-right mx-auto"
+                  />
                 </div>
               </div>
             </div>
