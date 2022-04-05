@@ -28,7 +28,7 @@ function App() {
           <Route path="/register" exact component={Register}></Route>
           <Route path="/login" exact component={Login}></Route>
           <Route
-            path="/profile/viewPost/:post_id"
+            path="/profile/viewPost/:post_url/:post_id"
             exact
             component={ViewPost}
           ></Route>
@@ -41,6 +41,7 @@ function App() {
             component={EditPost}
           ></Route>
           <Route path="/allPost" exact component={AllPost}></Route>
+          <Route path="/allPost/viewPost/:post_url/:post_id" exact component={ViewPost}></Route>
         </Switch>
       </BrowserRouter>
     </div>

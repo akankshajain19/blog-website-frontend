@@ -36,13 +36,13 @@ const [containPost,set_noPost]= useState()
       .get(`http://localhost:8083/profile/${id}`)
       .then((res) => {
         // console.log(res);
-        console.log(res.data.length)
+        // console.log(res.data.length)
         if(res.data.length == 0){
           set_noPost(true)
-          console.log("no post")
+          // console.log("no post")
         }
         else{
-          console.log("have post")
+          // console.log("have post")
           set_noPost(false)
           
         }
@@ -89,7 +89,7 @@ const [containPost,set_noPost]= useState()
                     />
                   </Link>
                   <Link
-                    to={`profile/viewPost/${element.post_url}`}
+                    to={`profile/viewPost/${element.post_url}/${element.post_id}`}
                     className="text-dark"
                   >
                     <BsFillArrowRightSquareFill style={style} />

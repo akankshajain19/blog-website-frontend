@@ -38,6 +38,9 @@ function Register() {
         });
         history.push('/login')
       } else {
+        toast.warn(res.data, {
+          position: "top-center",
+        });
       }
     })
     .catch(function (error) {

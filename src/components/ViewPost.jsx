@@ -1,11 +1,14 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import man from "../Images/register.jpg";
 import Navbar2 from "./NavBar2";
 import { FcLike, FcLikePlaceholder, FaComment } from "react-icons/fc";
 import { FaRegCommentAlt, FaUser } from "react-icons/fa";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import axios from "axios";
+
+
 
 function ViewPost() {
   const {postUrl} = useParams()
@@ -13,6 +16,16 @@ function ViewPost() {
   const style2 = { fontSize: "1.5em" };
   const style3 = { fontSize: "1.5em" };
   const [like, likePost] = useState(true);
+
+  const [img_present, set_img_present] = useState(true);
+  const [category, setCategory] = useState("");
+  const { post_url } = useParams();
+  const { post_id } = useParams();
+  const [userPost, setPost] = useState("");
+  const [selectedImage, setSelectedImage] = useState();
+  const [value, setValue] = useState("");
+  const [slug, setSlug] = useState("");
+  const [desc, setDesc] = useState("");
 
   const likeClick = (e) => {
     likePost(false);
@@ -22,6 +35,28 @@ function ViewPost() {
     likePost(true);
     console.log("unlike");
   };
+
+  const getPost = () => {
+    axios
+      .get(`http://localhost:8083/profile/viewPost/${post_url}/${post_id}`)
+      .then((res) => {
+        setSlug(res.data.post_url);
+        setSelectedImage(res.data.image);
+        setDesc(res.data.post_desc);
+        setValue(res.data.post_body);
+        setPost(res.data.post_title);
+        setCategory(res.data.category);
+        sessionStorage.setItem("post_id", res.data.post_id);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getPost();
+  }, []);
 
   return (
     <>
