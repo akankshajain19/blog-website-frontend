@@ -149,6 +149,7 @@ function EditPost() {
                     className="list-group-item bg-success text-light mt-3"
                     type="file"
                     name="image"
+                    
                     onChange={imageChange}
                   ></input>
                   <div className="list-group list-group-flush ">
@@ -202,7 +203,8 @@ function EditPost() {
               </div>
               <div className="list-group list-group-flush">
                 <div className="imagePreview mt-2 mb-2">
-                  {selectedImage && (
+                  {/* {selectedImage && ( */}
+                  {
                     <div>
                       {img_present ? (
                         <img
@@ -218,7 +220,8 @@ function EditPost() {
                         />
                       )}
                     </div>
-                  )}
+                  }
+                  {/* )} */}
                 </div>
               </div>
             </div>

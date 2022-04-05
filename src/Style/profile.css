@@ -1,4 +1,17 @@
 .imagePreview{
    
-    height: 100px;
+    height: 200px;
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    
 }
+
+.card_content{
+    transition: transform .7s
+}
+.card_content:hover {
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }

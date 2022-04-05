@@ -25,21 +25,7 @@ export default function Navbar() {
             LOGIN
           </Link>
         </li>
-        <li className="nav-item nav-link h4 mt-2">
-          <Link to={"/editPost"} className="text-decoration-none text-light">
-            EditPost
-          </Link>
-        </li>
-        <li className="nav-item nav-link h4 mt-2">
-          <Link to={"/viewPost"} className="text-decoration-none text-light">
-            ViewPost
-          </Link>
-        </li>
-        <li className="nav-item nav-link h4 mt-2">
-          <Link to={"/profile"} className="text-decoration-none text-light">
-            profile
-          </Link>
-        </li>
+    
      
       </ul>
     </div>
