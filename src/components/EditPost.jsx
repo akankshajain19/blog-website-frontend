@@ -202,7 +202,7 @@ function EditPost() {
                 ></input>
               </div>
               <div className="list-group list-group-flush">
-                <div className="imagePreview mt-2 mb-2">
+                <div className=" mt-2 mb-2">
                   {/* {selectedImage && ( */}
                   {
                     <div>
