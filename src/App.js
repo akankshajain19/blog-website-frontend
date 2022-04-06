@@ -15,6 +15,8 @@ import EditPost from "./components/EditPost";
 import AllPost from "./components/AllPost";
 import { useState } from "react";
 import EditImage from "./components/EditImage";
+import Comment from "./components/Comment"
+
 
 function App() {
   const userId = sessionStorage.getItem("id");
@@ -46,6 +48,7 @@ function App() {
             exact
             component={EditImage}
           ></Route>
+          <Route path="/comment" exact component={Comment}></Route>
           <Route path="/allPost" exact component={AllPost}></Route>
           <Route path="/allPost/viewPost/:post_url/:post_id" exact component={ViewPost}></Route>
         </Switch>
