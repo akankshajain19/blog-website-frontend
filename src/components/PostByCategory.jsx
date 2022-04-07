@@ -21,7 +21,7 @@ function PostByCategory(props) {
                   <h1 className="name_first_letter text-light ">
                     {props.name.charAt(0).toUpperCase()}
                   </h1>
-                  <span className="name_props">{props.name}</span>
+                  <span className="name_props name_user">{props.name}</span>
                 </span>
 
                 <h3 className="mt-2">

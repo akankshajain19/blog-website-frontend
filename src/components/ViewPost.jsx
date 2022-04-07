@@ -11,6 +11,9 @@ import htmlToFormattedText from "html-to-formatted-text";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
+import ReactQuill from "react-quill";
+ const style3 = { fontSize: "1.5em" };
+
 function ViewPost() {
   const { post_url } = useParams();
   const { post_id } = useParams();
@@ -25,6 +28,8 @@ function ViewPost() {
   const [image, setImage] = useState([]);
   const [date, setDate] = useState("");
   const user_id = sessionStorage.getItem("id");
+
+
   const likeClick = () => {
     console.log(like);
     setLike(like + 1);
@@ -111,31 +116,21 @@ function ViewPost() {
               <FaRegCommentAlt style={style2} />
             </div>
 
-            <h5 class="card-title mt-3">{post_url}</h5>
-            <p class="card-text">
-              {" "}
-              {htmlToFormattedText(body.slice(0, 300) + "...")}
-            </p>
+            <div className="col-lg-5 ">
+              <h4>{name}</h4>
+            </div>
+
             <p class="card-text">{desc}</p>
-            <div id="comments" className="row mt-2 ">
-              <div className="col-lg-1 bg primary ">
-                <FaUser style={style3} />
-              </div>
-              <div className="col-lg-2 ">
-                {" "}
-                <h4>{name}</h4>
-              </div>
-            </div>
-            <div className="row mt-3 ">
-              <div className="col-lg-3  rounded">
-                <AiOutlineClockCircle style={style2} />
-                <b> {date}</b>
-              </div>
-              <div className="col-lg-3  bg-light  rounded">
-                <h2 class="form-text text-muted "></h2>
-              </div>
-            </div>
-            <div className="col-lg-10 rounded">
+            <ReactQuill
+              
+              className="mt-4"
+        
+              modules={{ toolbar: "" }}
+              value={body}
+              readOnly="true"
+            />
+           
+            <div className="col-lg-100 rounded">
               <Comment post_id={post_id} />
             </div>
           </div>

@@ -8,8 +8,7 @@ import htmlToFormattedText from "html-to-formatted-text";
 import PostByCategory from "./PostByCategory";
 
 function AllPost() {
-  let [post_url, setPostUrl] = useState();
-  let [post_id, setPotId] = useState();
+
   const [category, setCategory] = useState(0);
   let [post, setPost] = useState([]);
   const childFunc = useRef(null);
@@ -55,7 +54,7 @@ function AllPost() {
           aria-label="Default select example"
           onChange={category_id}
         >
-          <option selected>Select Category</option>
+         
           <option value="1">All Post</option>
           <option value="2">Personal</option>
           <option value="3">Business</option>
