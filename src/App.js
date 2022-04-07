@@ -49,6 +49,7 @@ function App() {
             component={EditImage}
           ></Route>
           <Route path="/comment" exact component={Comment}></Route>
+          <Route path="/allPost/:category_id" exact component={AllPost}></Route>
           <Route path="/allPost" exact component={AllPost}></Route>
           <Route path="/allPost/viewPost/:post_url/:post_id" exact component={ViewPost}></Route>
         </Switch>

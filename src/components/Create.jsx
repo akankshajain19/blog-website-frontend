@@ -6,15 +6,14 @@ import Navbar2 from "./NavBar2";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
-
 function Create() {
-  var history =  useHistory();
+  var history = useHistory();
   const [userPost, setPost] = useState("");
   const [selectedImage, setSelectedImage] = useState();
   const [value, setValue] = useState("");
   const [slug, setSlug] = useState("");
   const [desc, setDesc] = useState("");
-  const [category,setCategory] = useState(0);
+  const [category, setCategory] = useState(0);
   const URI = "http://localhost:8083/post";
 
   const handleDescription = (e) => {
@@ -36,29 +35,29 @@ function Create() {
     const createSlug = e.target.value.trim().split(" ").join("-");
     setSlug(createSlug);
   };
-  const category_id = (e) =>{
+  const category_id = (e) => {
     setCategory(e.target.value);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
-if(userPost==''&& value== "",desc=="",slug=="",category==""){
-  toast.warn("Fill all the fields", {
-    position: "top-center",
-  });
-
-}  else if(selectedImage == undefined){
-  toast.warn("Select post image", {
-    position: "top-center",
-  });
-}
+    if (
+      (userPost == "" && value == "", desc == "", slug == "", category == "")
+    ) {
+      toast.warn("Fill all the fields", {
+        position: "top-center",
+      });
+    } else if (selectedImage == undefined) {
+      toast.warn("Select post image", {
+        position: "top-center",
+      });
+    }
 
     let u = sessionStorage.getItem("id");
-    const Post = { userPost, selectedImage, value, desc, slug,category};
+    const Post = { userPost, selectedImage, value, desc, slug, category };
     console.log(Post);
-   
+
     let formData = new FormData();
     formData.set("selectedImage", selectedImage);
     formData.set("value", value);
@@ -66,7 +65,7 @@ if(userPost==''&& value== "",desc=="",slug=="",category==""){
     formData.set("desc", desc);
     formData.set("slug", slug);
     formData.set("u_id", u);
-    formData.set("c_id",category);
+    formData.set("c_id", category);
 
     console.log(formData);
     axios
@@ -81,7 +80,7 @@ if(userPost==''&& value== "",desc=="",slug=="",category==""){
           toast.success("New post created", {
             position: "top-center",
           });
-          history.push('/profile')
+          history.push("/profile");
         }
       })
       .catch(function (error) {
@@ -115,14 +114,14 @@ if(userPost==''&& value== "",desc=="",slug=="",category==""){
                     onChange={category_id}
                   >
                     <option selected>Select Category</option>
-                    <option value="1">Personal</option>
-                    <option value="2">Business</option>
-                    <option value="3">Fashion</option>
-                    <option value="4">Technology</option>
-                    <option value="5">Lifestyle</option>
-                    <option value="6">Travel</option>
-                    <option value="7">Food</option>
-                    <option value="8">News</option>
+                    <option value="2">Personal</option>
+                    <option value="3">Business</option>
+                    <option value="4">Fashion</option>
+                    <option value="5">Technology</option>
+                    <option value="6">Lifestyle</option>
+                    <option value="7">Travel</option>
+                    <option value="8">Food</option>
+                    <option value="9">News</option>
                   </select>
                   <input
                     className="list-group-item bg-success text-light mt-3"
@@ -142,21 +141,21 @@ if(userPost==''&& value== "",desc=="",slug=="",category==""){
                     value={value}
                     onChange={setValue}
                   />
-                    <div className="list-group list-group-flush mt-10">
-                <label className="list-group-item">Meta Description</label>
-                <textarea
-                  cols="20"
-                  rows="5"
-                  placeholder=" meta description ..."
-                  maxLength="150"
-                  onChange={handleDescription}
-                  className="px-2 mt-3 rounded"
-                ></textarea>
-                <h3 className=" mt-3 text-success">
-                  {" "}
-                  {desc ? 150 - desc.length : 150}
-                </h3>
-              </div>
+                  <div className="list-group list-group-flush mt-10">
+                    <label className="list-group-item">Meta Description</label>
+                    <textarea
+                      cols="20"
+                      rows="5"
+                      placeholder=" meta description ..."
+                      maxLength="150"
+                      onChange={handleDescription}
+                      className="px-2 mt-3 rounded"
+                    ></textarea>
+                    <h3 className=" mt-3 text-success">
+                      {" "}
+                      {desc ? 150 - desc.length : 150}
+                    </h3>
+                  </div>
                   <input
                     type="submit"
                     value="Create Post"
@@ -192,7 +191,6 @@ if(userPost==''&& value== "",desc=="",slug=="",category==""){
                   )}
                 </div>
               </div>
-            
             </div>
           </div>
         </div>
