@@ -9,7 +9,6 @@ import moment from "moment";
 import { FaUser } from "react-icons/fa";
 
 export default function Comment(props) {
-
   const [comments, setComments] = useState("");
   const user_id = sessionStorage.getItem("id");
   const post_id = props.post_id;
@@ -23,18 +22,20 @@ export default function Comment(props) {
   };
   const saveComment = (e) => {
     e.preventDefault();
-   
+
     console.log(comments + " " + user_id + " " + post_id);
     const p = { user_id, post_id };
     axios
       .put(`http://localhost:8083/saveComment/${comments}`, p)
       .then((res) => {
         console.log("comment saved");
+        document.getElementById("text").value = "";
+        displayComment();
       })
       .catch((err) => {
         console.log(err);
       });
-      displayComment()
+    displayComment();
   };
   const displayComment = () => {
     axios
@@ -42,8 +43,8 @@ export default function Comment(props) {
       .then((res) => {
         console.log(res.data);
         // setCommentList(res.data);
-        setCommentList(res.data)
-        const newDate = moment(res.data[i].cdate, "DD-MM-YYYY").format();
+        setCommentList(res.data);
+        const newDate = moment(res.data[i].cdate, "YYYY-MM-DD").format();
         const NewDate = newDate.split("T")[0];
         console.log(NewDate);
         setDate(NewDate);
@@ -55,7 +56,6 @@ export default function Comment(props) {
   };
   useEffect(() => {
     displayComment();
-   
   }, []);
   return (
     <div>
@@ -64,6 +64,7 @@ export default function Comment(props) {
 
         <div class="input-group mb-3">
           <input
+            id="text"
             type="text"
             class="form-control"
             placeholder="Write here"
@@ -85,7 +86,21 @@ export default function Comment(props) {
         {commentsList.map((element) => {
           return (
             <>
-              <div className="row mt-3 ">
+              <div class="card p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="user d-flex flex-row align-items-center">
+                    <FaUser style={style3} width="30" /> &nbsp;
+                    <span>
+                      <small class="font-weight-bold text-primary">
+                        {element.userName}
+                      </small>
+                      <small class="font-weight-bold"> {element.comment}</small>
+                    </span>
+                  </div>
+                  <small>{date} ago</small>
+                </div>
+              </div>
+              {/* <div className="row mt-3 ">
                 <div id="comments" className="mt-2 ">
                   <div className="col-lg-1 ">
                     <FaUser style={style3} />
@@ -108,7 +123,7 @@ export default function Comment(props) {
                   </div>
 
                 </div>
-              </div>
+              </div> */}
             </>
           );
         })}

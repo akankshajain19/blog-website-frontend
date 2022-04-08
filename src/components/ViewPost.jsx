@@ -72,7 +72,7 @@ function ViewPost() {
         setDesc(res.data.post_desc);
         setImage(res.data.image);
         setLike(res.data.like);
-        const newDate = moment(res.data.date, "DD-MM-YYYY").format();
+        const newDate = moment(res.data.date, "YYYY-MM-DD").format();
         const NewDate = newDate.split("T")[0];
         setDate(NewDate);
         var arr = Object.values(res.data.likeList);
@@ -98,7 +98,7 @@ function ViewPost() {
       <Navbar2 />
       <div className="container-fluid ">
         <div className="row mt-3 ">
-          <div className="col-lg-8 col-12 bg-light  shadow-lg p-3 mb-5 bg-white rounded ">
+          <div className="col-lg-12 col-12 bg-light  shadow-lg p-3 mb-5 bg-white rounded ">
             <img
               src={`data:image/png;base64,${image}`}
               className="img-fluid rounded float-left  float-right mx-auto"
