@@ -1,14 +1,13 @@
 import Navbar2 from "./NavBar2";
 import "../Style/profile.css";
 import "../Style/allPost.css";
-import { Link } from "react-router-dom";
+
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import htmlToFormattedText from "html-to-formatted-text";
+
 import PostByCategory from "./PostByCategory";
 
 function AllPost() {
-
   const [category, setCategory] = useState(0);
   let [post, setPost] = useState([]);
   const childFunc = useRef(null);
@@ -54,7 +53,6 @@ function AllPost() {
           aria-label="Default select example"
           onChange={category_id}
         >
-         
           <option value="1">All Post</option>
           <option value="2">Personal</option>
           <option value="3">Business</option>

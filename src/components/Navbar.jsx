@@ -25,8 +25,16 @@ export default function Navbar() {
             LOGIN
           </Link>
         </li>
-    
-     
+        <li className="nav-item nav-link h4 mt-2">
+          <Link to={"/aboutus"} className="text-decoration-none text-light">
+            ABOUTUS
+          </Link>
+        </li>
+        <li className="nav-item nav-link h4 mt-2">
+          <Link to={"/contact"} className="text-decoration-none text-light">
+            CONTACT
+          </Link>
+        </li>
       </ul>
     </div>
   );

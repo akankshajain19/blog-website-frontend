@@ -31,7 +31,7 @@ function Register() {
 
     const Register = { email, name, password };
     axios.post(URI, Register) .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data === "Successfully Register") {
         toast.success(res.data, {
           position: "top-center",

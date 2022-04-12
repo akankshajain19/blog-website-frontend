@@ -1,0 +1,11 @@
+.imagec{
+   
+    height: 500px;
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    /* width: 200px; */
+    
+}
