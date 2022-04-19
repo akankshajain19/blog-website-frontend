@@ -15,7 +15,7 @@ function AllPost() {
     axios
       .get("http://localhost:8083/allPost")
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.reverse());
         setPost(res.data);
       })
       .catch((err) => {
@@ -31,8 +31,9 @@ function AllPost() {
       .get(`http://localhost:8083/allPost/${e.target.value}`)
 
       .then((res) => {
-        console.log(res.data);
-        setPost(res.data);
+        // console.log(res.data[0]);
+       
+        setPost(res.data.reverse());
       })
       .catch((err) => {
         console.log(err);
