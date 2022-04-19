@@ -30,6 +30,7 @@ function Login() {
       .then((res) => {
         if (res.data) {
           sessionStorage.setItem("id", res.data.id);
+          sessionStorage.setItem("name", res.data.name);
 
           history.push("/profile");
         } else {

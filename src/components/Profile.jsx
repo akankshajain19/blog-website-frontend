@@ -8,13 +8,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../Style/profile.css";
 import NoPost from "./NoPost";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Profile() {
   let [post, setPost] = useState([]);
   const [containPost, set_noPost] = useState();
   const style = { fontSize: "1.5em", margin: "0.5em " };
   const title = "Card title";
-
+  const style1 = {  fontSize: "3em",margin: "0.3em " };
   const deletePost = (post_Id) => {
     const id = sessionStorage.getItem("id");
     axios
@@ -55,7 +56,9 @@ export default function Profile() {
   return (
     <>
       <Navbar2 />
-
+      <FaUserCircle style={style1} />
+      <span className="h3 font-italic">{sessionStorage.getItem("name")}</span>
+  
       <div className="container-fluid ">
         <div className="row mt-4 ">
           {containPost ? (

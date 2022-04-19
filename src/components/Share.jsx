@@ -3,6 +3,8 @@ import "../Style/share.css";
 import { FacebookShareButton, WhatsappShareButton,TwitterShareButton,EmailShareButton,LinkedinShareButton} from 'react-share';
 import { FacebookIcon, WhatsappIcon,TwitterIcon,EmailIcon,LinkedinIcon} from 'react-share';
 export default function Share({ closeShare }) {
+    const ur = window.location.href;
+    // console.log(ur);
     return (
         <div className="popup">
             <div className='inner'>
@@ -11,20 +13,20 @@ export default function Share({ closeShare }) {
                 <button id='can' onClick={() => { closeShare(false) }}>X</button>
                 Share this blog via
                 <div>
-                    <FacebookShareButton url="https://www.facebook.com/">
+                    <FacebookShareButton url={ur} quote={"Read this Blog"}>
                         <FacebookIcon logoFillColor="white" round={true} >
                         </FacebookIcon>
                     </FacebookShareButton>
-                    <WhatsappShareButton url="http://localhost:3000/allPost/viewPost/flutter-crash-course/624ef325c683492126953309">
+                    <WhatsappShareButton url={ur} quote={"Read this Blog"}>
                         <WhatsappIcon logoFillColor="white" round={true}></WhatsappIcon>
                     </WhatsappShareButton>
-                   <TwitterShareButton url="https://www.instagram.com/">
+                   <TwitterShareButton url={ur} quote={"Read this Blog"}>
                        <TwitterIcon logoFillColor="white" round={true}></TwitterIcon>
                    </TwitterShareButton>
-                   <EmailShareButton url="https://accounts.google.com/login">
+                   <EmailShareButton url={ur} quote={"Read this Blog"}>
                        <EmailIcon logoFillColor="white" round={true}></EmailIcon>
                    </EmailShareButton>
-                   <LinkedinShareButton url="https://www.linkedin.com/login">
+                   <LinkedinShareButton url={ur} quote={"Read this Blog"}>
                     <LinkedinIcon logoFillColor="white" round={true}></LinkedinIcon>
                    </LinkedinShareButton>
                 </div>

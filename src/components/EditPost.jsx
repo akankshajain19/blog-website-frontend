@@ -133,14 +133,14 @@ function EditPost() {
                     onChange={category_id}
                   >
                     <option selected>Select Category</option>
-                    <option value="1">Personal</option>
-                    <option value="2">Business</option>
-                    <option value="3">Fashion</option>
-                    <option value="4">Technology</option>
-                    <option value="5">Lifestyle</option>
-                    <option value="6">Travel</option>
-                    <option value="7">Food</option>
-                    <option value="8">News</option>
+                    <option value="2">Personal</option>
+                    <option value="3">Business</option>
+                    <option value="4">Fashion</option>
+                    <option value="5">Technology</option>
+                    <option value="6">Lifestyle</option>
+                    <option value="7">Travel</option>
+                    <option value="8">Food</option>
+                    <option value="9">News</option>
                   </select>
              
                   <div className="list-group list-group-flush ">

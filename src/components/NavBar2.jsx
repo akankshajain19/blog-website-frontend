@@ -27,6 +27,11 @@ export default function Navbar2() {
             CREATE POST
           </Link>
         </li>
+        <li className="nav-item nav-link h4 mt-2">
+          <Link to={"/profile"} className="text-decoration-none text-light">
+          PROFILE
+          </Link>
+        </li>
 
         <li className="nav-item nav-link h4 mt-2">
           <Link
@@ -37,11 +42,7 @@ export default function Navbar2() {
             LOGOUT
           </Link>
         </li>
-        <li className="nav-item nav-link h4 mt-2">
-          <Link to={"/profile"} className="text-decoration-none text-light">
-           PROFILE
-          </Link>
-        </li>
+   
        
       </ul>
     </div>
