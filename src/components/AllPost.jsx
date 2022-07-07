@@ -11,6 +11,7 @@ function AllPost() {
   const [category, setCategory] = useState(0);
   let [post, setPost] = useState([]);
   const childFunc = useRef(null);
+  
   const fetchdata = () => {
     axios
       .get("http://localhost:8083/allPost")

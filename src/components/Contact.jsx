@@ -37,7 +37,7 @@ function Contact() {
                 >
                   <img src={akansha} className="card-img-top" />
                   <div className="card-body">
-                    <h5 className="card-title">Akansha Jain</h5>
+                    <h5 className="card-title">Akanksha Jain</h5>
                     <p className="card-text">Mob no-8989098344</p>
                     <h6>
                       e-mail: <a href="email">akanshajain867@gmail.com</a>

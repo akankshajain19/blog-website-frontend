@@ -31,7 +31,6 @@ function Create() {
 
   const inputHandler = (e) => {
     setPost(e.target.value);
-
     const createSlug = e.target.value.trim().split(" ").join("-");
     setSlug(createSlug);
   };

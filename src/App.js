@@ -20,8 +20,7 @@ import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
 
 function App() {
-  // const userId = sessionStorage.getItem("id");
-  // const postId = sessionStorage.getItem("p_url");
+
   return (
     <div className="container">
       <BrowserRouter>
